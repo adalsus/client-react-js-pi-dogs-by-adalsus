@@ -1,10 +1,16 @@
 import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App.jsx"
-import './index.css'
+import ReactDOM from "react-dom/client"
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import './index.css'
+import Intro from './pages/Intro.jsx';
+import Ingreso from './pages/Ingreso.jsx';
+
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Intro />);
+
+
+function inicie() {
+  root.render(<Ingreso />);
+}
+setInterval(inicie, 2400);
