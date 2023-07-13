@@ -1,7 +1,8 @@
 #root {
-  max-width: 1280px;
+  min-width: 320px;
+  /*max-width: 100%;*/
   margin: 0 auto;
-  padding: 2rem;
+  /*padding: 2rem;*/
   text-align: center;
 }
 
@@ -12,9 +13,6 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
@@ -28,7 +26,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
+  .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
@@ -39,4 +37,12 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.App {
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

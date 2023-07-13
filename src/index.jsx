@@ -6,11 +6,12 @@ import Intro from './pages/Intro.jsx';
 import Ingreso from './pages/Ingreso.jsx';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Intro />);
+var rootemp = ReactDOM.createRoot(document.getElementById('temp_root'));
+rootemp.render(<Intro />);
 
 
 function inicie() {
-  root.render(<Ingreso />);
+  rootemp.render(<Ingreso />);
 }
 setInterval(inicie, 2400);
+
