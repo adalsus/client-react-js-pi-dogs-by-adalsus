@@ -1,11 +1,11 @@
-.cIngreso {
+.cLandingPage {
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
 }
 
-#h_cIngreso {
+#h_cLandingPage {
    display: flex;
    flex-direction: column;
    align-items: center;

@@ -1,59 +1,126 @@
 import { useState } from "react";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import doggies from './images/doggies.png'
 import './App.css'
 import SearchBar from './components/SearchBar.jsx'
-//import Cards from './components/Cards.jsx'
-//rimport Card from './components/Card.jsx'
 
-// Import the Home page component
-import Home from "./pages/Home.jsx";
 
-// Import and apply CSS stylesheet
-//import "./styles/styles.js";
+import { Routes, Route } from 'react-router-dom';
+import Breeds from './components/Breeds.jsx'
+import Nav from './components/Nav.jsx'
+import DetailBreed from "./components/DetailBreed";
+import FormBreed from "./components/FormBreed";
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { getDogBreeds } from './redux/actions.js'
+
+
 
 function App() {
 
-  return (
-    <div 
-        className="App" 
-        style={{
-          padding: '20vw',
-          backgroundImage: `url(${doggies})`,
-          backgroundSize: '100%'
-        }}
-        >
-      
-        
-        <h1>Doggies Application</h1>
-        <div><img src={reactLogo} className="logo" alt="React logo" /></div>
-        <div className="card">
+  
+  const [breedsArr, setBreedsArr] = useState({
+    breeds_array: []
+  })
+  const cleanBreedsArr = () => {
+    setBreedsArr({breeds_array: []})
+  }
+  const updateBreedsArr = (value) => {
+    Object.assign(breedsArr.breeds_array, { breeds_array:value });
+  }
+  
 
-          <div>
-            { //<Cards
-              //  characters={characters}
-            }
-            {
-            //<Cards
-        
-            ///>
-            }
-          </div>
+  const [pagina, setPagina] = useState({
+    barra: '',
+    numero: 0,
+  })
 
+
+  const dispatch = useDispatch()
+  useLayoutEffect(() => {
+    //Cada que cambie el state efectúa estas instrucciones
+    getDogBreeds(pagina.barra)(dispatch)
+  },[pagina]);
+  
+
+  let onDigita_App = event => {
+    Object.assign(pagina,{numero:0})
+    Object.assign(pagina,{barra:event.target.value})
+    setPagina({...pagina})
+  }
+  const blank_barra = () => {
+    Object.assign(pagina,{numero:0})
+    Object.assign(pagina,{barra:''})
+    setPagina({...pagina})
+  }
+  
+  const on_btn_click = (event) => {
+    //console.log(typeof(event.target.innerText - 1))
+    Object.assign(pagina,{numero:(event.target.innerText - 1)})
+    setPagina({...pagina})
+  }
+
+  
+  //{
+  
+
+    return (
+      <div  className="App" 
+          style={{
+            backgroundImage: `url(${doggies})`,
+            backgroundSize: '100%',
+            maxWidth: '100%',
+          }}
+      >
+        <div id='divCtrlPaginas' onClick={on_btn_click}></div>
+        <div id='dogs_app'>Doggies Application</div>
+        <div id='div_espaciador'></div>
+        <div id='bm'>
+          <div id='bm-nav' className='bm-item'><Nav onClick={blank_barra}/></div>
         </div>
-        
-        <div>
-          
-          <SearchBar
-            onSearch={ characterID => window.alert(characterID) }
+
+
+        <Routes>
+
+          <Route  path = '/'
+                element =   {<Breeds
+                                numero={pagina.numero}
+                                cleanBreedsArr={cleanBreedsArr}
+                                updateBreedsArr={updateBreedsArr}
+                                breeds_array={breedsArr.breeds_array}
+                            />}
+        />
+          <Route  path = '/detail-breed'
+                element =   {<DetailBreed
+    
+                            />}
           />
-          
-        </div>
+          <Route  path = '/form-breed'
+                element =   {<FormBreed
+    
+                            />}
+          />
+
+        </Routes>
+
+    
+
+        <div>
       
-        {/*<Home />*/}
-    </div>
-  );
+          <SearchBar
+            suValor={pagina.barra}
+            onChange={onDigita_App}
+            onSearch={characterID => window.alert(characterID)}
+          />
+      
+        </div>
+  
+      </div>
+    );
+  
+
+  //}
+
+
 }
 
 

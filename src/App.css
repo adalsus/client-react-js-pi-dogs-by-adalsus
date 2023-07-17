@@ -1,8 +1,8 @@
 #root {
   min-width: 320px;
-  /*max-width: 100%;*/
-  margin: 0 auto;
-  /*padding: 2rem;*/
+  width: 100%;
+  /*margin: 0;
+  padding: 2rem;*/
   text-align: center;
 }
 
@@ -31,9 +31,11 @@
   }
 }
 
+/*
 .card {
   padding: 2em;
 }
+*/
 
 .read-the-docs {
   color: #888;
@@ -45,4 +47,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#bm {
+  display: 'flex';
+  background-color: black;
+}
+.bm-item{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: x-large;
+}
+
+#dogs_app {
+  font-size: 300%;
+  font-weight: bold;
+  color:deepskyblue;
+}
+
+#div_espaciador {
+  height: 25px;
 }

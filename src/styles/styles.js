@@ -44,9 +44,22 @@ const Entrada = styled.input`
   left: 0%;
 `;
 
-
+const Menu = styled.div`
+  width: 100%;
+  
+`;
+const Enlaces = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Eop = styled.div`
+  color: gold;
+  font-weight: bold;
+  font-size: x-large;
+`;
 
 
 export { 
-  Actividad, Entrada, 
+  Actividad, Entrada, Menu, Enlaces,
+  Eop, 
 }
