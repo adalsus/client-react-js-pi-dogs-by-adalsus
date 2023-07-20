@@ -13,6 +13,6 @@ rootemp.render(<Intro />);
 function inicie() {
   rootemp.render(<LandingPage />);
 }
-const tiempo = /*0*/2400/**/
+const tiempo = /**0**/2400/**/
 setInterval(inicie, tiempo);
 

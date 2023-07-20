@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { all_images_fn, all_images } from '../../images/all_images_fn.js'
 import obj_img from '../../images/to_dog_sin.png'
+import { all_temps_fn, all_temps } from './all_temps_fn.js'
 
 import { URL_MI_API_EXPRESS_LOCAL, URL_MI_API_EXPRESS_CLOUD } from "../ids/idsApp.js";
 
@@ -32,6 +33,16 @@ const save_images_server = async() => {
          //console.log(all_images)
          return all_images
    })
+   .catch((error) => {
+      if (error.response) {
+         console.log(error.response);
+         console.log("images: server responded");
+      } else if (error.request) {
+         console.log("images: network error");
+      } else {
+         console.log('images: ', error);
+      }
+   });
 }
 
 var num_Pags
@@ -87,11 +98,72 @@ const creeCtrlPaginas = N_p => {
    }
 }
 
+const all_temperaments_server = async() => {
+   await axios(`${URL_API_EXPRESS}/temperaments`)
+   .then(arr_data => {
+         for (let obj of arr_data.data) {
+            all_temps_fn(obj.nameT)
+         }
+         //console.log(all_temps)
+         return all_temps      
+   })
+   .catch((error) => {
+      if (error.response) {
+         console.log(error.response);
+         console.log("all_temps: server responded");
+      } else if (error.request) {
+         console.log("all_temps: network error");
+      } else {
+         console.log('all_temps: ', error);
+      }
+   });
+}
+const temperament_selecMulti = () => {
+   let js_selected_temperament = document.getElementsByName('selected_temperament')
+   if (js_selected_temperament!==null) {
+      let arrTemps = all_temperaments_server()
+      //console.log(arrTemps.length)
+      if (arrTemps.length!==undefined) {
+         js_selected_temperament = [...arrTemps]
+         let options = ''
+         /*arr.map((op,i)=>{
+            const op_option = document.createElement('option')
+            js_selected_temperament.append(`${op}`,op_option);
+            //options += `<option value="${op}" width="33%">${op}</option>\n`
+         })*/
+         //console.log(js_selected_temperament)
+         return js_selected_temperament
+      }
+   }
+}
+
+
+function useRegex(input) {
+   let regex = /[A-Za-zÁÉÍÓÚÑÜáéíóíñü\s]+/i;
+   return regex.test(input);
+}
+const onlyWords = word => {
+   let correcto = true
+   for (let caracter of word) {
+      //console.log(caracter)
+      if (useRegex(caracter)===false) {
+         correcto = false
+         break
+      }
+   }
+   return correcto
+}
+
+
+
 export {
    URL_API_EXPRESS,
    save_images_server,
    agrNarr,
    get_image,
    num_Pags,
-   creeCtrlPaginas
+   creeCtrlPaginas,
+   temperament_selecMulti,
+   all_temperaments_server,
+   onlyWords
 }

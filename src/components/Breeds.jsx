@@ -1,6 +1,7 @@
 //import Breed from "./Breed";
 import { useSelector } from 'react-redux'
 import { get_image, num_Pags, creeCtrlPaginas } from '../js/fns/fnsApp.js'
+import { Link } from "react-router-dom"
 
 const Breeds = (props) => {
    
@@ -16,6 +17,8 @@ const Breeds = (props) => {
       let currPag_breeds = _currPag_breeds
       if (currPag_breeds!==undefined) {
          //console.log('Número de Páginas -> ',num_Pags)
+         const js_divCtrPag = document.getElementById('divCtrlPaginas')
+         js_divCtrPag.innerHTML = '';
          creeCtrlPaginas(num_Pags)
       }
       let ruta_temp
@@ -46,7 +49,11 @@ const Breeds = (props) => {
                                  />
                               </div>
                               <div>{JSON.stringify(breed.id,null,null)}</div>
-                              <div>{JSON.stringify(breed.name,null,null)}</div>
+                              <div>
+                                 <Link to={`/detail-breed/${JSON.stringify(breed.id,null,null)}`}>
+                                    {JSON.stringify(breed.name,null,null)}
+                                 </Link>
+                              </div>
                               <div>{JSON.stringify(breed.weight,null,null)}</div>
                               <div>{JSON.stringify(breed.height,null,null)}</div>
                               <div>{JSON.stringify(breed.life_span,null,null)}</div>

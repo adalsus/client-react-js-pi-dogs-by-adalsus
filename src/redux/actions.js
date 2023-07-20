@@ -19,6 +19,16 @@ function getDogBreeds(name) {
                   payload: await data.data
                })
             })
+            .catch((error) => {
+               if (error.response) {
+                  console.log(error.response);
+                  console.log("actions x name: server responded");
+               } else if (error.request) {
+                  console.log("actions x name: network error");
+               } else {
+                  console.log('actions x name: ', error);
+               }
+            })
       
          :  await
             axios(`${URL_API_EXPRESS}/dogs`)
@@ -27,6 +37,16 @@ function getDogBreeds(name) {
                   type: GET_DOG_BREEDS,
                   payload: await data.data
                })
+            })
+            .catch((error) => {
+               if (error.response) {
+                  console.log(error.response);
+                  console.log("actions: server responded");
+               } else if (error.request) {
+                  console.log("actions: network error");
+               } else {
+                  console.log('actions: ', error);
+               }
             })
          
       }

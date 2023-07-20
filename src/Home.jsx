@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import doggies from './images/doggies.png'
-import './App.css'
+import './Home.css'
 import SearchBar from './components/SearchBar.jsx'
 
 
@@ -12,10 +13,11 @@ import FormBreed from "./components/FormBreed";
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { getDogBreeds } from './redux/actions.js'
+import { all_temperaments_server } from './js/fns/fnsApp.js'
 
 
 
-function App() {
+function Home() {
 
   
   const [breedsArr, setBreedsArr] = useState({
@@ -31,7 +33,7 @@ function App() {
 
   const [pagina, setPagina] = useState({
     barra: '',
-    numero: 0,
+    numero: 0
   })
 
 
@@ -39,16 +41,24 @@ function App() {
   useLayoutEffect(() => {
     //Cada que cambie el state efectúa estas instrucciones
     getDogBreeds(pagina.barra)(dispatch)
-  },[pagina]);
+  },[pagina.barra]);
   
 
   let onDigita_App = event => {
+    const js_divCtrPag = document.getElementById('divCtrlPaginas')
+    js_divCtrPag.innerHTML = '';
     Object.assign(pagina,{numero:0})
+    setPagina({...pagina})
     Object.assign(pagina,{barra:event.target.value})
     setPagina({...pagina})
+    //setTimeout(()=>{}, 1500);
   }
   const blank_barra = () => {
+    all_temperaments_server();
+    const js_divCtrPag = document.getElementById('divCtrlPaginas')
+    js_divCtrPag.innerHTML = '';
     Object.assign(pagina,{numero:0})
+    setPagina({...pagina})
     Object.assign(pagina,{barra:''})
     setPagina({...pagina})
   }
@@ -82,38 +92,38 @@ function App() {
         <Routes>
 
           <Route  path = '/'
-                element =   {<Breeds
+                  element =   {<Breeds
                                 numero={pagina.numero}
                                 cleanBreedsArr={cleanBreedsArr}
                                 updateBreedsArr={updateBreedsArr}
                                 breeds_array={breedsArr.breeds_array}
-                            />}
+                              />}
         />
-          <Route  path = '/detail-breed'
-                element =   {<DetailBreed
-    
-                            />}
+          <Route  path = '/detail-breed/:detail_id'
+                  element =   {<DetailBreed
+                                numero={pagina.numero}
+                              />}
           />
           <Route  path = '/form-breed'
-                element =   {<FormBreed
+                  element =   {<FormBreed
     
-                            />}
+                              />}
           />
 
         </Routes>
 
     
 
-        <div>
+        <div id='divbarraSearch'>
       
           <SearchBar
             suValor={pagina.barra}
             onChange={onDigita_App}
-            onSearch={characterID => window.alert(characterID)}
           />
       
         </div>
-  
+        <div><br /></div>
+        <div><br /></div>
       </div>
     );
   
@@ -125,4 +135,4 @@ function App() {
 
 
 
-export default App
+export default Home
