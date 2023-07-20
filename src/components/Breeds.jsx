@@ -39,14 +39,16 @@ const Breeds = (props) => {
                                  }
                               </div>
                               <div>
-                                 <img
-                                    style={{
-                                       width:'100%',
-                                       objectFit:'contain'
-                                    }} 
-                                    src={ruta_temp}
-                                    alt={breed.name}
-                                 />
+                                 <Link to={`/detail-breed/${JSON.stringify(breed.id,null,null)}`}>
+                                    <img
+                                       style={{
+                                          width:'100%',
+                                          objectFit:'contain'
+                                       }} 
+                                       src={ruta_temp}
+                                       alt={breed.name}
+                                    />
+                                 </Link>
                               </div>
                               <div>{JSON.stringify(breed.id,null,null)}</div>
                               <div>
