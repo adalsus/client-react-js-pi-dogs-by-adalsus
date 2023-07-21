@@ -114,7 +114,7 @@ function Home() {
 
     
 
-        <div id='divbarraSearch'>
+        <div id='divbarraSearch' style={{display:'none'}}>
       
           <SearchBar
             suValor={pagina.barra}

@@ -20,6 +20,8 @@ const DetailBreed = (props) => {
       if (currPag_breeds!==undefined) {
          const js_divCtrPag = document.getElementById('divCtrlPaginas')
          js_divCtrPag.innerHTML = ''
+         const js_divbarraSearch = document.getElementById('divbarraSearch')
+         if (js_divbarraSearch.style.display==='block') js_divbarraSearch.style.display = 'none'
          //console.log('detail_id -> ', detail_id)
          //console.log('currPag_breeds')
          //console.log(currPag_breeds)
@@ -86,7 +88,7 @@ const DetailBreed = (props) => {
                      </div>
                      <h2>{camposBreed.name}</h2>
                   </div>
-               : <div></div>
+               :  <div></div>
             }
          </div>
       );

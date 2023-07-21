@@ -197,6 +197,8 @@ const FormBreed = () => {
       //console.log(all_temps)
       const js_divCtrPag = document.getElementById('divCtrlPaginas')
       if (js_divCtrPag!==null) js_divCtrPag.innerHTML = '';
+      const js_divbarraSearch = document.getElementById('divbarraSearch')
+      if (js_divbarraSearch.style.display==='block') js_divbarraSearch.style.display = 'none'
       
       return (
          <form

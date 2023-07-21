@@ -19,6 +19,8 @@ const Breeds = (props) => {
          //console.log('Número de Páginas -> ',num_Pags)
          const js_divCtrPag = document.getElementById('divCtrlPaginas')
          js_divCtrPag.innerHTML = '';
+         const js_divbarraSearch = document.getElementById('divbarraSearch')
+         if (js_divbarraSearch.style.display==='none') js_divbarraSearch.style.display = 'block'
          creeCtrlPaginas(num_Pags)
       }
       let ruta_temp
