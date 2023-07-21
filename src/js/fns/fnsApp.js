@@ -4,10 +4,11 @@ import obj_img from '../../images/to_dog_sin.png'
 import { all_temps_fn, all_temps } from './all_temps_fn.js'
 
 import { URL_MI_API_EXPRESS_LOCAL, URL_MI_API_EXPRESS_CLOUD } from "../ids/idsApp.js";
+import { siOno_LOCAL_API_EXPRESS } from '../../confpara.js'
 
 
 
-const I_will_work_with_LOCAL_API_EXPRESS = 'NO' //<-Cambiar a NO si desea trabajar con MI API CLOUD
+const I_will_work_with_LOCAL_API_EXPRESS = siOno_LOCAL_API_EXPRESS;
 
 
 

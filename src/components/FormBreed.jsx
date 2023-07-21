@@ -156,6 +156,7 @@ const FormBreed = () => {
                js_dToE[0].textContent = ''
                */
 
+               setsinErrores(false)
                
             })
             .catch((error) => {
@@ -198,8 +199,9 @@ const FormBreed = () => {
       const js_divCtrPag = document.getElementById('divCtrlPaginas')
       if (js_divCtrPag!==null) js_divCtrPag.innerHTML = '';
       const js_divbarraSearch = document.getElementById('divbarraSearch')
-      if (js_divbarraSearch.style.display==='block') js_divbarraSearch.style.display = 'none'
-      
+      if (js_divbarraSearch!==null) {
+         if (js_divbarraSearch.style.display==='block') js_divbarraSearch.style.display = 'none'
+      }
       return (
          <form
             className='form_createBreed'
