@@ -61,6 +61,7 @@ function Home() {
     setPagina({...pagina})
     Object.assign(pagina,{barra:''})
     setPagina({...pagina})
+    getDogBreeds(pagina.barra)(dispatch)
   }
   
   const on_btn_click = (event) => {

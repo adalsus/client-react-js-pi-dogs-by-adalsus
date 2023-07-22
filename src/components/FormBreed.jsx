@@ -157,7 +157,8 @@ const FormBreed = () => {
                */
 
                setsinErrores(false)
-               
+               alert('INFORMACIÓN GUARDADA CON ÉXITO EN LA DATABASE.\n'+
+               'LA APP SE RE-CARGARÁ PARA PONER EN MEMORIA LA INFORMACIÓN INGRESADA')
             })
             .catch((error) => {
                if (error.response) {
@@ -190,7 +191,7 @@ const FormBreed = () => {
 
 
       // Prevent the browser from reloading the page
-      e.preventDefault();
+      //e.preventDefault();
    }
 
 

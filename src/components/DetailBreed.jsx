@@ -35,19 +35,21 @@ const DetailBreed = (props) => {
          } else {
             url_img = obj_image
          }*/
-         camposBreed = {
-            id: breedOfid.id,
-            name: breedOfid.name,
-            bred_for: breedOfid.bred_for,
-            life_span: breedOfid.life_span,
-            height_imperial: breedOfid.height.imperial,
-            height_metric: breedOfid.height.metric,
-            weight_imperial: breedOfid.weight.imperial,
-            weight_metric: breedOfid.weight.metric,
-            temperament: breedOfid.temperament,
-            id_Temps: breedOfid.id_Temps,
-            Temp: JSON.stringify(breedOfid.Temp,null,null),
-            reference_image_id: JSON.stringify(breedOfid.reference_image_id,null,null)
+         if (breedOfid!==undefined) {
+            camposBreed = {
+               id: breedOfid.id,
+               name: breedOfid.name,
+               bred_for: breedOfid.bred_for,
+               life_span: breedOfid.life_span,
+               height_imperial: breedOfid.height.imperial,
+               height_metric: breedOfid.height.metric,
+               weight_imperial: breedOfid.weight.imperial,
+               weight_metric: breedOfid.weight.metric,
+               temperament: breedOfid.temperament,
+               id_Temps: breedOfid.id_Temps,
+               Temp: JSON.stringify(breedOfid.Temp,null,null),
+               reference_image_id: JSON.stringify(breedOfid.reference_image_id,null,null)
+            }
          }
       }
 
@@ -55,7 +57,7 @@ const DetailBreed = (props) => {
          <div>
             <div style={{fontSize: '250%', fontWeight:'bold'}}>DetailBreed</div>
             {
-               (currPag_breeds!==undefined) 
+               (currPag_breeds!==undefined && camposBreed!==undefined) 
                ?  <div> 
                      <h2>{camposBreed.name}</h2>
                      <div>{camposBreed.id}</div>
