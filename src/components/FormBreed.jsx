@@ -187,11 +187,11 @@ const FormBreed = () => {
          });
          //Fin POST a /temps
 
+      } else {
+         // Prevent the browser from reloading the page
+         e.preventDefault();
       }
-
-
-      // Prevent the browser from reloading the page
-      //e.preventDefault();
+   
    }
 
 
