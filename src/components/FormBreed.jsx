@@ -126,10 +126,14 @@ const FormBreed = () => {
             //POST a /dogs
             axios.post(`${URL_API_EXPRESS}/dogs`, userDataBreed)
             .then((response)=>{
-               let js_btn_submit = document.getElementsByClassName('btn_submit')
-               js_btn_submit.disabled = true
+               
                console.log('Express responde al POST a /dogs')
                console.log(response.data)
+
+               setsinErrores(false)
+
+               //let js_btn_submit = document.getElementsByClassName('btn_submit')
+               //js_btn_submit.disabled = true
 
                e.target[0].value = ''
                e.target[1].value = ''
@@ -156,7 +160,7 @@ const FormBreed = () => {
                js_dToE[0].textContent = ''
                */
 
-               setsinErrores(false)
+               
                alert('INFORMACIÓN GUARDADA CON ÉXITO EN LA DATABASE.\n'+
                'LA APP SE RE-CARGARÁ PARA PONER EN MEMORIA LA INFORMACIÓN INGRESADA')
             })
