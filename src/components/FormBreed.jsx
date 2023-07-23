@@ -88,7 +88,7 @@ const FormBreed = () => {
       js_dToE[0].textContent = ''
    }
 
-   function handleSubmit(e) {
+   async function handleSubmit(e) {
       
       if (sinErrores===true) {
          
@@ -98,11 +98,11 @@ const FormBreed = () => {
          }
          
          //POST a temps
-         axios.post(`${URL_API_EXPRESS}/temps`, userDataTemps)
-         .then((response)=>{
+         await axios.post(`${URL_API_EXPRESS}/temps`, userDataTemps)
+         .then( async response => {
             console.log('Express responde al POST a /temps')
-            console.log(response.data)
-            let idTemperaments = response.data.idTemps
+            console.log(await response.data)
+            let idTemperaments = await response.data.idTemps
             
 
 
@@ -121,14 +121,14 @@ const FormBreed = () => {
                "life_span": e.target[6].value,
                "reference_image_id": null,
                "image": null,
-               "id_Temps": idTemperaments
+               "id_Temps": await idTemperaments
             }
             //POST a /dogs
-            axios.post(`${URL_API_EXPRESS}/dogs`, userDataBreed)
-            .then((response)=>{
+            await axios.post(`${URL_API_EXPRESS}/dogs`, userDataBreed)
+            .then( async response => {
                
                console.log('Express responde al POST a /dogs')
-               console.log(response.data)
+               console.log(await response.data)
 
                setsinErrores(false)
 
@@ -164,7 +164,7 @@ const FormBreed = () => {
                alert('INFORMACIÓN GUARDADA CON ÉXITO EN LA DATABASE.\n'+
                'LA APP SE RE-CARGARÁ PARA PONER EN MEMORIA LA INFORMACIÓN INGRESADA')
             })
-            .catch((error) => {
+            .catch( error => {
                if (error.response) {
                   console.log(error.response);
                   console.log("/dogs: server responded");
@@ -173,13 +173,15 @@ const FormBreed = () => {
                } else {
                   console.log('/dogs: ', error);
                }
+               // Prevent the browser from reloading the page
+               e.preventDefault();
             });
             //Fin POST a /dogs
 
 
 
          })
-         .catch((error) => {
+         .catch( error => {
             if (error.response) {
                console.log(error.response);
                console.log("/temps: server responded");
@@ -188,6 +190,8 @@ const FormBreed = () => {
             } else {
                console.log('/temps: ', error);
             }
+            // Prevent the browser from reloading the page
+            e.preventDefault();
          });
          //Fin POST a /temps
 
