@@ -37,11 +37,21 @@ const Actividad = styled.div`
 `;
 const Entrada = styled.input`
   height: 44px;
-  width: 100%;
-  font-size: 3vw;
+  width: 95%;
+  font-size: 3.5vw;
   position: fixed;
   bottom: 0%;
   left: 0%;
+`;
+const BotonBar = styled.button`
+  height: 44px;
+  font-size: small;
+  width: 5%;
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  padding: 0%;
+  border-radius: 0%;
 `;
 
 const Menu = styled.div`
@@ -60,6 +70,7 @@ const Eop = styled.div`
 
 
 export { 
-  Actividad, Entrada, Menu, Enlaces,
+  Actividad, Entrada, BotonBar, 
+  Menu, Enlaces,
   Eop, 
 }

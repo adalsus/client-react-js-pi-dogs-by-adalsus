@@ -65,9 +65,12 @@ function Home() {
   }
   
   const on_btn_click = (event) => {
-    //console.log(typeof(event.target.innerText - 1))
-    Object.assign(pagina,{numero:(event.target.innerText - 1)})
-    setPagina({...pagina})
+    //console.log(event)
+    if (event.target.innerHTML[0]!=='<') {
+      //console.log(typeof(event.target.innerText - 1))
+      Object.assign(pagina,{numero:(event.target.innerText - 1)})
+      setPagina({...pagina})
+    }
   }
 
   
@@ -120,7 +123,9 @@ function Home() {
           <SearchBar
             suValor={pagina.barra}
             onChange={onDigita_App}
+            pagNum={pagina.numero}
           />
+          
       
         </div>
         <div><br /></div>
