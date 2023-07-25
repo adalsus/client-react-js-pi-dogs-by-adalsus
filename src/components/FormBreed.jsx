@@ -15,10 +15,10 @@ const FormBreed = () => {
    const [sinErrores, setsinErrores] = useState(false)
 
 
-   const navigate = useNavigate();
-   useEffect(() => {
-      navigate("/form-breed");
-   }, []);
+   //const navigate = useNavigate();
+   //useEffect(() => {
+   //   navigate("/form-breed");
+   //}, []);
 
    function useRegex(input) {
       let regex = /\d\s-\s\d/i;
@@ -92,18 +92,21 @@ const FormBreed = () => {
       
       if (sinErrores===true) {
          
+         e.preventDefault();
+
          // Formo data
          const userDataTemps = {
             "namesTemps": tempsEle
          }
          
+
+
          //POST a temps
-         await axios.post(`${URL_API_EXPRESS}/temps`, userDataTemps)
+         await axios.post(`${URL_API_EXPRESS}/temps`, JSON.parse(JSON.stringify(userDataTemps,null,2)))
          .then( async response => {
             console.log('Express responde al POST a /temps')
             console.log(await response.data)
             let idTemperaments = await response.data.idTemps
-            
 
 
             // Formo Breed'data
@@ -121,10 +124,10 @@ const FormBreed = () => {
                "life_span": e.target[6].value,
                "reference_image_id": null,
                "image": null,
-               "id_Temps": await idTemperaments
+               "id_Temps": idTemperaments
             }
             //POST a /dogs
-            await axios.post(`${URL_API_EXPRESS}/dogs`, userDataBreed)
+            await axios.post(`${URL_API_EXPRESS}/dogs`, JSON.parse(JSON.stringify(userDataBreed,null,2)))
             .then( async response => {
                
                console.log('Express responde al POST a /dogs')
@@ -163,37 +166,47 @@ const FormBreed = () => {
                
                alert('INFORMACIÓN GUARDADA CON ÉXITO EN LA DATABASE.\n'+
                'LA APP SE RE-CARGARÁ PARA PONER EN MEMORIA LA INFORMACIÓN INGRESADA')
+               document.forms[0].submit()
             })
             .catch( error => {
                if (error.response) {
                   console.log(error.response);
                   console.log("/dogs: server responded");
+                  alert(error.response)
                } else if (error.request) {
                   console.log("/dogs: network error");
+                  alert("/dogs: network error")
                } else {
                   console.log('/dogs: ', error);
+                  alert(error)
                }
                // Prevent the browser from reloading the page
                e.preventDefault();
             });
             //Fin POST a /dogs
-
+            //alert('Fin POST a /dogs')
 
 
          })
          .catch( error => {
+            alert('ERROR!!!')
             if (error.response) {
                console.log(error.response);
                console.log("/temps: server responded");
+               alert(error.response)
             } else if (error.request) {
                console.log("/temps: network error");
+               alert("/temps: network error")
             } else {
                console.log('/temps: ', error);
+               alert(error)
             }
             // Prevent the browser from reloading the page
             e.preventDefault();
          });
          //Fin POST a /temps
+         //alert('Fin POST a /temps')
+
 
       } else {
          // Prevent the browser from reloading the page
