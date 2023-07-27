@@ -68,7 +68,10 @@ const Breeds = (props) => {
                         )
                      }
                   )
-               :  <div></div>
+               :  <div>
+                     <div><img src='https://media.giphy.com/media/gt84hJMLdC2If1rZox/giphy.gif'/></div>
+                     <h2>Cargando imágenes...; en caso de que no, Refresh o Actualizar</h2>
+                  </div>
             }
          </div>
       );
