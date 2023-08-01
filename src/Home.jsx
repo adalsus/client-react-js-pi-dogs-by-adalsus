@@ -70,6 +70,8 @@ function Home() {
       //console.log(typeof(event.target.innerText - 1))
       Object.assign(pagina,{numero:(event.target.innerText - 1)})
       setPagina({...pagina})
+      const js_divCtrPag = document.getElementById('divCtrlPaginas')
+      js_divCtrPag.style.visibility = 'hidden'
     }
   }
 
@@ -85,7 +87,7 @@ function Home() {
             maxWidth: '100%',
           }}
       >
-        <div id='divCtrlPaginas' onClick={on_btn_click}></div>
+        
         <div id='dogs_app'>Doggies Application</div>
         <div id='div_espaciador'></div>
         <div id='bm'>
@@ -117,13 +119,16 @@ function Home() {
         </Routes>
 
     
-
+        
         <div id='divbarraSearch' style={{display:'none'}}>
-      
+
+
+          
           <SearchBar
             suValor={pagina.barra}
             onChange={onDigita_App}
             pagNum={pagina.numero}
+            on_btn_click={on_btn_click}
           />
           
       

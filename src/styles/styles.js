@@ -30,7 +30,7 @@ video {
 
 const Actividad = styled.div`
   //display: contents;
-  background-color: aqua;
+  background-color: transparent;
   margin-top: 2px;
   vertical-align: center;
   position: relative;
@@ -53,10 +53,14 @@ const BotonBar = styled.button`
   padding: 0%;
   border-radius: 0%;
 `;
+const CtrlPags = styled.div`
+  position: fixed;
+  bottom: 44px;
+  justify-self: center;
+`;
 
 const Menu = styled.div`
   width: 100%;
-  
 `;
 const Enlaces = styled.div`
   display: flex;
@@ -68,9 +72,17 @@ const Eop = styled.div`
   font-size: x-large;
 `;
 
+const Div_Dogs = styled.div`
+  display: grid;
+  grid-template-columns: 49.75% 49.75%;
+  grid-gap: 2.5px;
+`;
+const Card_Dog = styled.div`
+`;
 
 export { 
-  Actividad, Entrada, BotonBar, 
+  Actividad, Entrada, BotonBar, CtrlPags, 
   Menu, Enlaces,
   Eop, 
+  Div_Dogs, Card_Dog
 }

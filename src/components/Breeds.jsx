@@ -2,6 +2,7 @@
 import { useSelector } from 'react-redux'
 import { get_image, num_Pags, creeCtrlPaginas } from '../js/fns/fnsApp.js'
 import { Link } from "react-router-dom"
+import { Div_Dogs, Card_Dog } from '../styles/styles.js';
 
 const Breeds = (props) => {
    
@@ -25,13 +26,13 @@ const Breeds = (props) => {
       }
       let ruta_temp
       return (
-         <div>
+         <Div_Dogs>
             {
                (currPag_breeds!==undefined) 
                ?  currPag_breeds.map(
                      (breed,index) => {
                         return (
-                           <div key={index}>
+                           <Card_Dog key={index} id={`card_dog_${index}`}>
                               <br></br>
                               <div style={{display:'none'}}>
                                  {
@@ -45,7 +46,8 @@ const Breeds = (props) => {
                                     <img
                                        style={{
                                           width:'100%',
-                                          objectFit:'contain'
+                                          height: '444px',
+                                          objectFit:'scale-down'
                                        }} 
                                        src={ruta_temp}
                                        alt={breed.name}
@@ -64,16 +66,26 @@ const Breeds = (props) => {
                               <div>{JSON.stringify(breed.temperament,null,null)}</div>
                               <div>{JSON.stringify(breed.id_Temps,null,null)}</div>
                               <div>{JSON.stringify(breed.Temp,null,null)}</div>
-                           </div>
+                           </Card_Dog>
                         )
                      }
                   )
-               :  <div>
-                     <div><img src='https://media.giphy.com/media/gt84hJMLdC2If1rZox/giphy.gif'/></div>
-                     <h2>Cargando imágenes...; en caso de que no, Refresh o Actualizar</h2>
-                  </div>
+               :  <>
+                     <div style={{width:'99.5%'}}>
+                        <h2   style={{
+                                 marginTop:'33.3%',
+                                 marginBottom:'100%'
+                              }}
+                        >
+                           Cargando imágenes...; en caso de que no, Refresh o Actualizar &#10227;
+                        </h2>
+                     </div>
+                     <div style={{width:'99.5%'}}>
+                        <img margin='auto' width='100%' src='https://media.giphy.com/media/gt84hJMLdC2If1rZox/giphy.gif'/>
+                     </div>
+                  </>
             }
-         </div>
+         </Div_Dogs>
       );
    }
 
