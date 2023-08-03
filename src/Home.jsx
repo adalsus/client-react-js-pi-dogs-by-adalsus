@@ -100,6 +100,7 @@ function Home() {
           <Route  path = '/'
                   element =   {<Breeds
                                 numero={pagina.numero}
+                                barra={pagina.barra}
                                 cleanBreedsArr={cleanBreedsArr}
                                 updateBreedsArr={updateBreedsArr}
                                 breeds_array={breedsArr.breeds_array}

@@ -72,13 +72,15 @@ const Breeds = (props) => {
                   )
                :  <>
                      <div style={{width:'99.5%'}}>
-                        <h2   style={{
-                                 marginTop:'33.3%',
-                                 marginBottom:'100%'
-                              }}
-                        >
-                           Cargando imágenes...; en caso de que no, Refresh o Actualizar &#10227;
-                        </h2>
+                        { 
+                           (props.barra.length===0)
+                           ?  <h2 style={{marginTop:'33.3%',marginBottom:'100%'}}>
+                                 Cargando imágenes...; en caso de que no, Refresh o Actualizar &#10227;
+                              </h2>
+                           :  <h2 style={{marginTop:'33.3%',marginBottom:'100%'}}>
+                                 {props.barra} : esta raza no existe en la Base de Datos.
+                              </h2>
+                        }
                      </div>
                      <div style={{width:'99.5%'}}>
                         <img margin='auto' width='100%' src='https://media.giphy.com/media/gt84hJMLdC2If1rZox/giphy.gif'/>
